@@ -1,12 +1,12 @@
 package api.ArchitectureSport;
 
-import api.ArchitectureSport.api.HttpRequest;
-import api.ArchitectureSport.api.HttpResponse;
-import api.ArchitectureSport.api.HttpStatus;
+import api.ArchitectureSport.Http.HttpRequest;
+import api.ArchitectureSport.Http.HttpResponse;
+import api.ArchitectureSport.Http.HttpStatus;
 import api.ArchitectureSport.api.SportResource;
 import api.ArchitectureSport.api.UserResource;
 import api.ArchitectureSport.exceptions.InvalidRequestException;
-import api.ArchitectureSport.exceptions.InvalidThemeFieldException;
+import api.ArchitectureSport.exceptions.InvalidUserFieldException;
 
 public class Dispatcher {
 
@@ -19,13 +19,13 @@ public class Dispatcher {
 	}
 
 	public void doGet(HttpRequest request, HttpResponse response) {
-		// **/themes
-		if ("themes".equals(request.getPath())) {
-			response.setBody(themeResource.themeList().toString());
-			// **/themes/{id}/overage
-		} else if ("themes".equals(request.paths()[0]) && "overage".equals(request.paths()[2])) {
+		// **/users
+		if ("user".equals(request.getPath())) {
+			response.setBody(userResource.userList().toString());
+			// **/users/search?sport=*
+		} else if ("user".equals(request.paths()[0]) && "search".equals(request.paths()[1])) {
 			try {
-				response.setBody(themeResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
+				response.setBody(userResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
@@ -45,7 +45,7 @@ public class Dispatcher {
 			try {
 				themeResource.createTheme(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
-			} catch (InvalidThemeFieldException e) {
+			} catch (InvalidUserFieldException e) {
 				this.responseError(response, e);
 			}
 			break;

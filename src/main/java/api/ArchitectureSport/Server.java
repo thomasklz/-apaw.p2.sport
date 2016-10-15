@@ -1,7 +1,7 @@
 package api.ArchitectureSport;
 
-import api.ArchitectureSport.api.HttpRequest;
-import api.ArchitectureSport.api.HttpResponse;
+import api.ArchitectureSport.Http.HttpRequest;
+import api.ArchitectureSport.Http.HttpResponse;
 
 public class Server {
 	private Dispatcher dispatcher = new Dispatcher();

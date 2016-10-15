@@ -5,13 +5,18 @@ public class User {
 	private int id;
 	private String user;
 	private String nick;
-	
-	
-	public User(){
-		
+
+	public User() {
+
 	}
-	
-	
+
+	public User(int id, String user, String nick) {
+		this.id = id;
+		this.user = user;
+		this.nick = nick;
+
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -36,5 +41,4 @@ public class User {
 		this.nick = nick;
 	}
 
-	
 }

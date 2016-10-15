@@ -1,5 +1,7 @@
 package api.ArchitectureSport.daos;
 
-public class UserDao {
+import api.ArchitectureSport.entities.User;
+
+public interface UserDao extends GenericDao<User, Integer> {
 
 }

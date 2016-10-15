@@ -1,4 +1,4 @@
-package api.ArchitectureSport.api;
+package api.ArchitectureSport.Http;
 
 public class HttpResponse extends HttpBase {
 

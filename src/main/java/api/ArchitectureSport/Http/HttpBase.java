@@ -1,4 +1,4 @@
-package api.ArchitectureSport.api;
+package api.ArchitectureSport.Http;
 
 import java.util.HashMap;
 import java.util.Map;

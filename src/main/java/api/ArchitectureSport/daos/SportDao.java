@@ -1,5 +1,7 @@
 package api.ArchitectureSport.daos;
 
-public class SportDao {
+import api.ArchitectureSport.entities.Sport;
+
+public interface SportDao extends GenericDao<Sport, Integer> {
 
 }

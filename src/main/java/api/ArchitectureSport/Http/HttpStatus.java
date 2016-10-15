@@ -1,4 +1,4 @@
-package api.ArchitectureSport.api;
+package api.ArchitectureSport.Http;
 
 public enum HttpStatus {
     OK(200), CREATED(201), NO_CONTENT(204), 
