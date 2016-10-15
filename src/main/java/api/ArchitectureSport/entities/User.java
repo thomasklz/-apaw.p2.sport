@@ -43,6 +43,15 @@ public class User {
 		this.email = email;
 	}
 
+	public boolean hasSport(String sportName) {
+		for (Sport sport : sport) {
+			if (sport.getDeporte().equals(sportName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return "User [nick=" + nick + ", email=" + email + ", sport=" + sport + "]";

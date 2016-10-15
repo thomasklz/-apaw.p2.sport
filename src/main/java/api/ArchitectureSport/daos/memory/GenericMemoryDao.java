@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import es.upm.miw.apiArchitectureTheme.daos.GenericDao;
+import api.ArchitectureSport.daos.GenericDao;
 
 public abstract class GenericMemoryDao<T> implements GenericDao<T, Integer> {
 
