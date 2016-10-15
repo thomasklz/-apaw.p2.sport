@@ -27,13 +27,12 @@ public class SportDaoMemory extends GenericMemoryDao<Sport> implements SportDao 
 
 	@Override
 	protected Integer getId(Sport entity) {
-
-		return null;
+		return entity.getId();
 	}
 
 	@Override
 	protected void setId(Sport entity, Integer id) {
-		// TODO Auto-generated method stub
+		entity.setId(id);
 
 	}
 

@@ -4,6 +4,7 @@ import api.ArchitectureSport.Http.HttpMethod;
 import api.ArchitectureSport.Http.HttpRequest;
 import api.ArchitectureSport.Http.HttpResponse;
 import api.ArchitectureSport.daos.DaoFactory;
+import api.ArchitectureSport.daos.memory.DaoFactoryMemory;
 import upm.jbb.IO;
 
 public class ApiArchitectureMain {

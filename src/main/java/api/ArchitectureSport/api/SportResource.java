@@ -1,8 +1,11 @@
 package api.ArchitectureSport.api;
 
+import api.ArchitectureSport.controllers.SportController;
 import api.ArchitectureSport.controllers.UserController;
+import api.ArchitectureSport.exceptions.InvalidNameSportNull;
 import api.ArchitectureSport.exceptions.InvalidUserFieldException;
 import api.ArchitectureSport.exceptions.NotFoundUserIdException;
+import api.ArchitectureSport.exceptions.SportExistent;
 import api.ArchitectureSport.wrappers.UserListWrapper;
 
 public class SportResource {
@@ -13,9 +16,14 @@ public class SportResource {
 	}
 
 	// POST **/user body="userName"
-	public void createTheme(String themeName) throws InvalidUserFieldException {
-		this.validateField(themeName);
-		new UserController().createUser(themeName);
+	public void createSport(String sport) throws InvalidNameSportNull, SportExistent {
+		if (sport == null || sport.isEmpty()) {
+			throw new InvalidNameSportNull(sport);
+		}
+		if(! new SportController().){
+			
+		}
+
 	}
 
 	private void validateField(String field) throws InvalidUserFieldException {

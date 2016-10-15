@@ -25,7 +25,7 @@ public class Dispatcher {
 			// **/users/search?sport=*
 		} else if ("user".equals(request.paths()[0]) && "search".equals(request.paths()[1])) {
 			try {
-				response.setBody(userResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
+				response.setBody(userResource.searchUsersInSport(request.getParams().get("sport")).toString());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
