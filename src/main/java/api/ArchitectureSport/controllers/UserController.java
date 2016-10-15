@@ -3,10 +3,11 @@ package api.ArchitectureSport.controllers;
 import java.util.List;
 
 import api.ArchitectureSport.daos.DaoFactory;
+import api.ArchitectureSport.entities.Sport;
 import api.ArchitectureSport.entities.User;
+import api.ArchitectureSport.wrappers.ListUserNickWrapper;
 import api.ArchitectureSport.wrappers.UserListWrapper;
 import api.ArchitectureSport.wrappers.UserWrapper;
-import es.upm.miw.apiArchitectureTheme.wrappers.OverageWrapper;
 
 public class UserController {
 
@@ -14,25 +15,37 @@ public class UserController {
 		List<User> userList = DaoFactory.getFactory().getUserDao().findAll();
 		UserListWrapper userListWrapper = new UserListWrapper();
 		for (User user : userList) {
-			UserListWrapper.addUserWrapper(new UserWrapper(user.getId(), user.getName()));
+			userListWrapper.addUserWrapper(new UserWrapper(user.getNick(), user.getEmail()));
 		}
 		return userListWrapper;
 	}
 
-	public void createUser(String userName) {
-		DaoFactory.getFactory().getUserDao().create(new User(userName));
+	public void createUser(String nick, String email) {
+		DaoFactory.getFactory().getUserDao().create(new User(nick, email));
 	}
 
-	public OverageWrapper themeOverage(int userId) {
-		if (DaoFactory.getFactory().getUserDao().read(userId) == null) {
-			return null;
+	public ListUserNickWrapper searchUserSport(String sportName) {
+		ListUserNickWrapper listUserNickWrapper = new ListUserNickWrapper();
+		List<User> ListUserNick = DaoFactory.getFactory().getUserDao().findUserSport(sportName);
+		for (User userNick : ListUserNick) {
+			listUserNickWrapper.addNick(userNick.getNick());
 		}
-		List<Integer> voteValues = DaoFactory.getFactory().getSportDao().findValueByThemeId(themeId);
-		double total = 0;
-		for (Integer value : voteValues) {
-			total += value;
+		return listUserNickWrapper;
+	}
+
+	public User findUserNick(String nick) {
+		return DaoFactory.getFactory().getUserDao().findUserNick(nick);
+	}
+
+	public boolean addSportUser(String nick, String sportName) {
+		User user = findUserNick(nick);
+		if (!user.hasSport(sportName)) {
+			Sport sport = DaoFactory.getFactory().getSportDao().findSportName(sportName);
+			user.addSport(sport);
+			return true;
+		} else {
+			return false;
 		}
-		return new OverageWrapper(total / voteValues.size());
 	}
 
 }

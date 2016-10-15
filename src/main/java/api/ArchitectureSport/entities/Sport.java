@@ -9,8 +9,7 @@ public class Sport {
 
 	}
 
-	public Sport(int id, String deporte) {
-		this.id = id;
+	public Sport(String deporte) {
 		this.deporte = deporte;
 	}
 
