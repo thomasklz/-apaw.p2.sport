@@ -25,13 +25,13 @@ public class Dispatcher {
 			// **/users/search?sport=*
 		} else if ("user".equals(request.paths()[0]) && "search".equals(request.paths()[1])) {
 			try {
-				response.setBody(userResource.searchUsersInSport(request.getParams().get("sport")).toString());
+				response.setBody(userResource.searchUserSport(request.getParams().get("sport")).toString());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
 			// **/votes
 		} else if ("votes".equals(request.getPath())) {
-			response.setBody(voteResource.voteList().toString());
+			response.setBody(sportResource.sportList().toString());
 		} else {
 			responseError(response, new InvalidRequestException(request.getPath()));
 		}
@@ -54,7 +54,7 @@ public class Dispatcher {
 			String themeId = request.getBody().split(":")[0];
 			String vote = request.getBody().split(":")[1];
 			try {
-				voteResource.createVote(Integer.valueOf(themeId), Integer.valueOf(vote));
+				sportResource.createVote(Integer.valueOf(themeId), Integer.valueOf(vote));
 				response.setStatus(HttpStatus.CREATED);
 			} catch (Exception e) {
 				responseError(response, e);

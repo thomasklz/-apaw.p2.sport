@@ -20,8 +20,14 @@ public class UserController {
 		return userListWrapper;
 	}
 
-	public void createUser(String nick, String email) {
-		DaoFactory.getFactory().getUserDao().create(new User(nick, email));
+	public boolean createUser(String nick, String email) {
+		if (DaoFactory.getFactory().getUserDao().findUserNick(nick) == null) {
+			DaoFactory.getFactory().getUserDao().create(new User(nick, email));
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	public ListUserNickWrapper searchUserSport(String sportName) {

@@ -5,20 +5,20 @@ import java.util.List;
 
 public class ListUserNickWrapper {
 
-	private List<String> UserNickList;
+	private List<String> userNickList;
 
 	public ListUserNickWrapper() {
-		UserNickList = new ArrayList<>();
+		userNickList = new ArrayList<>();
 	}
 
 	public void addNick(String nick) {
-		UserNickList.add(nick);
+		userNickList.add(nick);
 	}
 
 	@Override
 	public String toString() {
 		String result = "{\"userList\":[";
-		for (String nick : UserNickList) {
+		for (String nick : userNickList) {
 			result += nick + ",";
 		}
 		return result.substring(0, result.length() - 1) + "]}";
