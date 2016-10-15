@@ -30,4 +30,9 @@ public class Sport {
 		this.deporte = deporte;
 	}
 
+	@Override
+	public String toString() {
+		return "deporte [deporte=" + deporte + "]";
+	}
+
 }

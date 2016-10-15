@@ -3,32 +3,27 @@ package api.ArchitectureSport.wrappers;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.upm.miw.apiArchitectureTheme.wrappers.ThemeWrapper;
-
 public class UserListWrapper {
 
-	
-List<ThemeWrapper> themeList;
+	List<UserWrapper> userList;
 
-	
-	public ThemeListWrapper() {
-		themeList = new ArrayList<>();
+	public UserListWrapper() {
+		userList = new ArrayList<>();
 	}
 
-	public List<ThemeWrapper> getThemeList() {
-		return themeList;
+	public List<UserWrapper> getThemeList() {
+		return userList;
 	}
 
-	public void addThemeWrapper(ThemeWrapper themeWrapper){
-		themeList.add(themeWrapper);
+	public void addUserWrapper(UserWrapper userWrapper) {
+		userList.add(userWrapper);
 	}
-	
 
 	@Override
 	public String toString() {
-		String result = "{\"themeList\":[ ";
-		for (ThemeWrapper themeWrapper : themeList) {
-			result += themeWrapper.toString() + ",";
+		String result = "{\"userList\":[ ";
+		for (UserWrapper userWrapper : userList) {
+			result += userWrapper.toString() + ",";
 		}
 		return result.substring(0, result.length() - 1) + "]}";
 	}

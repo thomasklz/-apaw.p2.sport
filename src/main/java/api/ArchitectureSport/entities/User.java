@@ -1,20 +1,18 @@
 package api.ArchitectureSport.entities;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class User {
-
 	private int id;
-	private String user;
 	private String nick;
+	private String email;
+	private List<Sport> sport;
 
-	public User() {
-
-	}
-
-	public User(int id, String user, String nick) {
-		this.id = id;
-		this.user = user;
+	public User(String nick, String email) {
 		this.nick = nick;
-
+		this.email = email;
+		this.sport = new LinkedList<Sport>();
 	}
 
 	public int getId() {
@@ -25,20 +23,29 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
 	public String getNick() {
 		return nick;
 	}
 
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void addSport(Sport sport) {
+		this.sport.add(sport);
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "User [nick=" + nick + ", email=" + email + ", sport=" + sport + "]";
 	}
 
 }
