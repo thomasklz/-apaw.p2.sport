@@ -6,7 +6,6 @@ import api.ArchitectureSport.Http.HttpStatus;
 import api.ArchitectureSport.api.SportResource;
 import api.ArchitectureSport.api.UserResource;
 import api.ArchitectureSport.exceptions.InvalidRequestException;
-import api.ArchitectureSport.exceptions.InvalidUserFieldException;
 
 public class Dispatcher {
 
@@ -29,9 +28,6 @@ public class Dispatcher {
 			} catch (Exception e) {
 				responseError(response, e);
 			}
-			// **/votes
-		} else if ("votes".equals(request.getPath())) {
-			response.setBody(sportResource.sportList().toString());
 		} else {
 			responseError(response, new InvalidRequestException(request.getPath()));
 		}
@@ -39,22 +35,22 @@ public class Dispatcher {
 
 	public void doPost(HttpRequest request, HttpResponse response) {
 		switch (request.getPath()) {
-		// POST **/themes body="themeName"
-		case "themes":
+		// POST **/user body="nick:email"
+		case "users":
 			// Injectar parámetros...
+			String nick = request.getBody().split(":")[0];
+			String email = request.getBody().split(":")[1];
 			try {
-				themeResource.createTheme(request.getBody());
+				userResource.crearUser(nick, email);
 				response.setStatus(HttpStatus.CREATED);
-			} catch (InvalidUserFieldException e) {
+			} catch (Exception e) {
 				this.responseError(response, e);
 			}
 			break;
-		// POST votes body="themeId:vote"
-		case "votes":
-			String themeId = request.getBody().split(":")[0];
-			String vote = request.getBody().split(":")[1];
+		// POST **/sport body="name"
+		case "sports":
 			try {
-				sportResource.createVote(Integer.valueOf(themeId), Integer.valueOf(vote));
+				sportResource.createSport(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
 			} catch (Exception e) {
 				responseError(response, e);
@@ -67,10 +63,15 @@ public class Dispatcher {
 	}
 
 	public void doPut(HttpRequest request, HttpResponse response) {
-		switch (request.getPath()) {
-		default:
+		if ("users".equals(request.paths()[0]) && "sport".equals(request.paths()[2])) {
+			// PUT **/users/{nick}/ sport body="sportName"
+			try {
+				userResource.addSportUser(request.paths()[1], request.getBody());
+			} catch (Exception e) {
+				responseError(response, e);
+			}
+		} else {
 			responseError(response, new InvalidRequestException(request.getPath()));
-			break;
 		}
 	}
 
