@@ -19,10 +19,10 @@ public class Dispatcher {
 
 	public void doGet(HttpRequest request, HttpResponse response) {
 		// **/users
-		if ("user".equals(request.getPath())) {
+		if ("users".equals(request.getPath())) {
 			response.setBody(userResource.userList().toString());
 			// **/users/search?sport=*
-		} else if ("user".equals(request.paths()[0]) && "search".equals(request.paths()[1])) {
+		} else if ("users".equals(request.paths()[0]) && "search".equals(request.paths()[1])) {
 			try {
 				response.setBody(userResource.searchUserSport(request.getParams().get("sport")).toString());
 			} catch (Exception e) {

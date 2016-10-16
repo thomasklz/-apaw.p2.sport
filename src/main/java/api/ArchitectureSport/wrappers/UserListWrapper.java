@@ -11,7 +11,7 @@ public class UserListWrapper {
 		userList = new ArrayList<>();
 	}
 
-	public List<UserWrapper> getThemeList() {
+	public List<UserWrapper> getUserList() {
 		return userList;
 	}
 
